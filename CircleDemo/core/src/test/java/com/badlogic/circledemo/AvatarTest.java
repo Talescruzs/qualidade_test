@@ -8,6 +8,9 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.Input.Keys;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -52,13 +55,30 @@ public class AvatarTest {
         assertEquals(mockTexture, avatarP1.getImg());
     }
 
-    @Ignore("Ignorado devido à dependência de bibliotecas nativas")
     @Test
     public void testSetPersonagem() {
-        // Configura o personagem para o jogador 1
-        avatarP1.setPersonagem(1, true);
+        // Mock para a textura
+        Texture mockAvatarTexture = mock(Texture.class);
+        Texture mockAnimationTexture = mock(Texture.class);
+
+        // Cria um objeto Personagem diretamente
+        Personagem personagem = new Personagem(
+            1, // ID
+            0, // posx
+            500, // posy
+            mockAvatarTexture, // avatarTexture
+            mockAnimationTexture, // animationTexture
+            600, // tamx
+            300, // tamy
+            300 // vidaT
+        );
+
+        // Configura o personagem para o avatar
+        avatarP1.setPersonagem(personagem);
+
+        // Verifica se o personagem foi configurado corretamente
         assertNotNull(avatarP1.getPersonagem());
-        assertEquals(1, avatarP1.getPersonagem().getId());
+        assertEquals(mockAvatarTexture, avatarP1.getImg());
     }
 
     @Ignore("Ignorado devido à dependência de bibliotecas nativas")

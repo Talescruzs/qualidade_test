@@ -101,6 +101,14 @@ public class Avatar{
         this.animation = new Animation(new TextureRegion(this.img), 1, 30f);
     }
 
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
+        this.img = personagem.getAvatar();
+        this.animation = personagem.getFrame().getTexture() != null
+            ? new Animation(new TextureRegion(this.img), 1, 30f)
+            : null;
+    }
+
     public Integer getPosx(){ return this.posx; }
     public Integer getPosy(){ return this.posy; }
     public Texture getImg(){ return this.img; }

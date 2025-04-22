@@ -25,3 +25,6 @@ p1:
  w(cima), a(esquerda), d(direita), f(ataque)
 p2:
  seta cima, seta esquerda, seta direita, l(ataque)
+
+### Sobre os Testes;
+Os métodos, como foram inicialmente pensados não possibilitavam testes de forma satisfatória, pois dependiam internamente das funções da libGDX e passar dados mockados foi dificil, então decidimos modificar os métodos para possibilitar os testes

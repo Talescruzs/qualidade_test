@@ -56,6 +56,17 @@ public class Personagem {
                 break;
         }
     }
+    public Personagem(int id, float posx, float posy, Texture avatarTexture, Texture animationTexture, int tamx, int tamy, int vidaT) {
+        this.id = id;
+        this.posx = posx;
+        this.posy = posy;
+        this.tamx = tamx;
+        this.tamy = tamy;
+        this.vidaT = vidaT;
+        this.vida = vidaT;
+        this.avatar = avatarTexture;
+        this.animation = new Animation(new TextureRegion(animationTexture), 2, 10f);
+    }
 
     public void setMoves(Array<Integer> listMoves){
         this.listMoves = listMoves;

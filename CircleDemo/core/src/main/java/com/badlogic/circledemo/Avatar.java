@@ -39,6 +39,21 @@ public class Avatar{
         this.animation = new Animation(new TextureRegion(this.img), 2, 30f);
     }
 
+    public Avatar(boolean isP1, Texture texture) {
+        this.idPersonagem = 0;
+        this.isP1 = isP1;
+        this.posy = 837 - 300;
+        this.img = texture;
+
+        if (isP1) {
+            this.posx = 0;
+        } else {
+            this.posx = 1600 - 300;
+        }
+
+        this.animation = new Animation(new TextureRegion(this.img), 2, 30f);
+    }
+
     public void setAvatar(int id){
         if(isP1){
             this.personagem = new Personagem(id, 0, 0); 
@@ -46,6 +61,12 @@ public class Avatar{
         else{
             this.personagem = new Personagem(id, 0, 0); 
         }
+        this.img = this.personagem.getAvatar();
+        this.animation = new Animation(new TextureRegion(this.img), 1, 30f);
+    }
+
+    public void setAvatar(Personagem personagem) {
+        this.personagem = personagem;
         this.img = this.personagem.getAvatar();
         this.animation = new Animation(new TextureRegion(this.img), 1, 30f);
     }

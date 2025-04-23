@@ -94,7 +94,6 @@ public class AvatarTest {
         assertNotEquals(initialFrame, updatedFrame);
     }
 
-    @Ignore("Ignorado devido à dependência de bibliotecas nativas")
     @Test
     public void testSetFrameIni() {
         // Atualiza o avatar para mudar o frame

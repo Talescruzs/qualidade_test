@@ -25,14 +25,20 @@ public class AnimationTest {
         animation = new Animation(regions, 1.0f); // 5 quadros, 1 segundo de ciclo
     }
 
-    // @Test
-    // public void testUpdateFrameChange() {
-    //     animation.update(0.3f); // Atualiza com 0.3 segundos
-    //     assertEquals(0, animation.getFrameIndex());
-
-    //     animation.update(0.3f); // Atualiza com mais 0.3 segundos
-    //     assertEquals(1, animation.getFrameIndex()); // O quadro deve mudar
-    // }
+    @Test
+    public void testUpdateFrameChange() {
+        assertEquals(0, animation.getFrameIndex()); 
+        animation.update(0.3f); 
+        assertEquals(1, animation.getFrameIndex());
+        animation.update(0.3f); 
+        assertEquals(2, animation.getFrameIndex());
+        animation.update(0.3f); 
+        assertEquals(3, animation.getFrameIndex());
+        animation.update(0.3f); 
+        assertEquals(4, animation.getFrameIndex());
+        animation.update(0.3f); 
+        assertEquals(0, animation.getFrameIndex());
+    }
 
     @Test
     public void testSetFrameIni() {

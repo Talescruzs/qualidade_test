@@ -19,8 +19,10 @@ public class Bolinha {
     public Bolinha(String path, Integer posx, Integer posy, Integer idLocal) {
         this(new Texture(Gdx.files.internal(path)), posx, posy, idLocal);
     }
-    public Bolinha(Integer posx, Integer posy, Integer idLocal){
-        this("bolinha.png", posx, posy, idLocal);
+
+    // Construtor padrão para uso em produção
+    public Bolinha(Integer posx, Integer posy, Integer idLocal) {
+        this(new Texture("bolinha.png"), posx, posy, idLocal);
     }
 
     public boolean clicou(float x, float y) {
@@ -44,6 +46,8 @@ public class Bolinha {
     }
 
     public void dispose() {
-        img.dispose();
+        if (img != null) {
+            img.dispose();
+        }
     }
 }

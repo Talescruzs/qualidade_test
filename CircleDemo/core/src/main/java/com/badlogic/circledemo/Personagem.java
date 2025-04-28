@@ -24,6 +24,7 @@ public class Personagem {
     public Personagem(int id, float posx, float posy) {
         this.posx = posx;
         this.posy = posy;
+        this.posyBase = posy;
         Texture t;
         switch (id) {
             case 1:
@@ -65,6 +66,7 @@ public class Personagem {
         this.vidaT = vidaT;
         this.vida = vidaT;
         this.avatar = avatarTexture;
+        this.posyBase = posy;
         this.animation = new Animation(new TextureRegion(animationTexture), 2, 10f);
     }
 
@@ -107,19 +109,20 @@ public class Personagem {
         
     }
 
-    public void move_esq(int d){
+    public void move_esq(int d) {
         this.posx -= d;
-        if(this.posx < 0){
-            this.posx += d;
+        if (this.posx < 0) {
+            this.posx = 0; // Redefine para 0 em vez de adicionar `d` de volta
         }
     }
 
-    public void move_dir(int d){
+    public void move_dir(int d) {
         this.posx += d;
-        if(this.posx > 1100){
-            this.posx -= d;
+        if (this.posx > 1100) {
+            this.posx = 1100; // Redefine para 1100
         }
     }
+
     public void jump(){
         if(this.posy == this.posyBase){
             this.dy = 22;
@@ -169,8 +172,10 @@ public class Personagem {
     public int getVidaT() { return vidaT; }
     public Float getPosx() { return this.posx; }
     public Float getPosy() { return this.posy; }
+    public double getDy() { return this.dy; }
     public TextureRegion getFrame(){return this.animation.getFrame();}
     public Texture getAvatar(){ return this.avatar; }
+    public Array<Integer> getMoves(){ return this.listMoves; }
     
     public int whereGo(){
         if(this.dir == 1 && this.esq == 0){

@@ -74,7 +74,7 @@ public class Avatar{
     public void setPersonagem(int id, boolean acertou){
         Array<Integer> moves = new Array<Integer>();
         if(isP1){
-            this.personagem = new Personagem(id, 0, 500); 
+            this.personagem = new Personagem(id, 0, 0); 
             Integer move = Keys.A;
             moves.add(move);
             move = Keys.D;
@@ -86,7 +86,7 @@ public class Avatar{
             this.personagem.setMoves(moves);
         }
         else{
-            this.personagem = new Personagem(id, 800, 500); 
+            this.personagem = new Personagem(id, 800, 0); 
             Integer move = Keys.LEFT;
             moves.add(move);
             move = Keys.RIGHT;

@@ -92,7 +92,6 @@ public class PersonagemTest {
         assertEquals(22, personagem.getDy(), 0.01);
     }
 
-    @Ignore("pula o teste por enquanto")
     @Test
     public void testGravity() {
         personagem.jump();
@@ -100,7 +99,6 @@ public class PersonagemTest {
         assertTrue(personagem.getPosy() > 200); // Verifica se o personagem subiu
     }
 
-    @Ignore("pula o teste por enquanto")
     @Test
     public void testTomaDano() {
         personagem.tomaDano(50);
@@ -114,6 +112,12 @@ public class PersonagemTest {
         personagem.setMoves(new Array<>(new Integer[]{1, 2, 3, 4}));
         outroPersonagem.setMoves(new Array<>(new Integer[]{1, 2, 3, 4}));
 
+        // Posiciona os personagens para que estejam dentro do alcance do ataque
+        outroPersonagem.move_esq(400); // Move o outro personagem para a esquerda
+
+        // Configura a direção do ataque
+        personagem.whereGo(); // Atualiza a direção do personagem
+
         // Realiza o ataque
         personagem.atack(outroPersonagem);
 
@@ -121,7 +125,6 @@ public class PersonagemTest {
         assertEquals(250, outroPersonagem.getVida());
     }
 
-    @Ignore("pula o teste por enquanto")
     @Test
     public void testWhereGo() {
         personagem.move_dir(10);

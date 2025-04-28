@@ -25,6 +25,7 @@ public class Personagem {
         this.posx = posx;
         this.posy = posy;
         this.posyBase = posy;
+        this.delayAtack = maxAtackDelay;
         Texture t;
         switch (id) {
             case 1:
@@ -57,6 +58,7 @@ public class Personagem {
                 break;
         }
     }
+
     public Personagem(int id, float posx, float posy, Texture avatarTexture, Texture animationTexture, int tamx, int tamy, int vidaT) {
         this.id = id;
         this.posx = posx;
@@ -68,6 +70,7 @@ public class Personagem {
         this.avatar = avatarTexture;
         this.posyBase = posy;
         this.animation = new Animation(new TextureRegion(animationTexture), 2, 10f);
+        this.delayAtack = maxAtackDelay; // Inicializa o delay do ataque
     }
 
     public void setMoves(Array<Integer> listMoves){
@@ -111,13 +114,17 @@ public class Personagem {
 
     public void move_esq(int d) {
         this.posx -= d;
+        this.esq = 1; // Atualiza a variável `esq`
+        this.dir = 0; // Garante que `dir` seja 0
         if (this.posx < 0) {
-            this.posx = 0; // Redefine para 0 em vez de adicionar `d` de volta
+            this.posx = 0; // Redefine para 0
         }
     }
 
     public void move_dir(int d) {
         this.posx += d;
+        this.dir = 1; // Atualiza a variável `dir`
+        this.esq = 0; // Garante que `esq` seja 0
         if (this.posx > 1100) {
             this.posx = 1100; // Redefine para 1100
         }
@@ -133,28 +140,33 @@ public class Personagem {
         this.vida -= dano;
     }
     
-    public void atack(Personagem outro){
-        int distanciaMin = this.tamx/2;    
-        int distanciaMax = this.tamx+100; 
-        if(delayAtack == maxAtackDelay){
+    public void atack(Personagem outro) {
+        int distanciaMin = this.tamx / 2;    
+        int distanciaMax = this.tamx + 100; 
+        System.out.println("DelayAtack: " + delayAtack);
+        System.out.println("Posição do outro personagem: " + outro.getPosx());
+        System.out.println("Posição do personagem: " + this.posx);
+
+        if (delayAtack == maxAtackDelay) {
             if (this.whereG == 1) { // Ataque à esquerda
                 if (this.posx >= outro.getPosx() - distanciaMax && this.posx <= outro.getPosx() - distanciaMin) {
                     outro.tomaDano(50);
                     outro.move_dir(40);
+                    System.out.println("Ataque à esquerda aplicado!");
                 }
             } else if (this.whereG == 0) { // Ataque à direita
                 if (this.posx <= outro.getPosx() + distanciaMax && this.posx >= outro.getPosx() + distanciaMin) {
                     outro.tomaDano(50);
                     outro.move_esq(40); 
+                    System.out.println("Ataque à direita aplicado!");
                 }
             }
             delayAtack = 0;
-        }
-        else{
+        } else {
             delayAtack++;
         }
-        
     }
+
     public void gravity(){
         this.posy += this.dy;
         this.dy -= 0.5;

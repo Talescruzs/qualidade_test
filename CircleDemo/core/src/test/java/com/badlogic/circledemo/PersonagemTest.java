@@ -72,11 +72,13 @@ public class PersonagemTest {
     @Test
     public void testMoveDir() {
         // Move o personagem para a direita
-        personagem.move_dir(10);
+        personagem.move_dir(10); // Move o personagem para a direita
+        personagem.whereGo(); // Atualiza a direção do personagem
         assertEquals(110, personagem.getPosx(), 0.01);
 
         // Move o personagem para além do limite direito
         personagem.move_dir(2000);
+        personagem.whereGo(); // Atualiza a direção do personagem
         assertEquals(1100, personagem.getPosx(), 0.01); // Verifica se `posx` foi redefinido para 1100
     }
 
@@ -105,7 +107,6 @@ public class PersonagemTest {
         assertEquals(250, personagem.getVida());
     }
 
-    @Ignore("pula o teste por enquanto")
     @Test
     public void testAtack() {
         // Configura os movimentos para ataque
@@ -113,9 +114,8 @@ public class PersonagemTest {
         outroPersonagem.setMoves(new Array<>(new Integer[]{1, 2, 3, 4}));
 
         // Posiciona os personagens para que estejam dentro do alcance do ataque
-        outroPersonagem.move_esq(400); // Move o outro personagem para a esquerda
-
-        // Configura a direção do ataque
+        outroPersonagem.move_dir(400); // Move o outro personagem para a direita
+        personagem.move_esq(450); // Move o personagem para a esquerda
         personagem.whereGo(); // Atualiza a direção do personagem
 
         // Realiza o ataque
@@ -127,10 +127,12 @@ public class PersonagemTest {
 
     @Test
     public void testWhereGo() {
-        personagem.move_dir(10);
+        personagem.move_dir(10); // Move o personagem para a direita
+        personagem.whereGo(); // Atualiza a direção do personagem
         assertEquals(1, personagem.whereGo()); // Direita
 
         personagem.move_esq(20);
+        personagem.whereGo(); // Atualiza a direção do personagem
         assertEquals(0, personagem.whereGo()); // Esquerda
     }
 }

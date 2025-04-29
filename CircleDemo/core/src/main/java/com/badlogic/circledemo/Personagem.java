@@ -146,18 +146,25 @@ public class Personagem {
         System.out.println("DelayAtack: " + delayAtack);
         System.out.println("Posição do outro personagem: " + outro.getPosx());
         System.out.println("Posição do personagem: " + this.posx);
+        System.out.println("Direção do ataque: " + this.whereG);
 
         if (delayAtack == maxAtackDelay) {
             if (this.whereG == 1) { // Ataque à esquerda
+                System.out.println("Condição de ataque à esquerda:");
+                System.out.println("this.posx: " + this.posx);
+                System.out.println("outro.getPosx() - distanciaMax: " + (outro.getPosx() - distanciaMax));
+                System.out.println("outro.getPosx() - distanciaMin: " + (outro.getPosx() - distanciaMin));
                 if (this.posx >= outro.getPosx() - distanciaMax && this.posx <= outro.getPosx() - distanciaMin) {
                     outro.tomaDano(50);
-                    outro.move_dir(40);
                     System.out.println("Ataque à esquerda aplicado!");
                 }
             } else if (this.whereG == 0) { // Ataque à direita
+                System.out.println("Condição de ataque à direita:");
+                System.out.println("this.posx: " + this.posx);
+                System.out.println("outro.getPosx() + distanciaMin: " + (outro.getPosx() + distanciaMin));
+                System.out.println("outro.getPosx() + distanciaMax: " + (outro.getPosx() + distanciaMax));
                 if (this.posx <= outro.getPosx() + distanciaMax && this.posx >= outro.getPosx() + distanciaMin) {
                     outro.tomaDano(50);
-                    outro.move_esq(40); 
                     System.out.println("Ataque à direita aplicado!");
                 }
             }

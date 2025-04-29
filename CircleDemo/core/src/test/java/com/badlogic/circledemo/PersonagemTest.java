@@ -113,10 +113,10 @@ public class PersonagemTest {
         personagem.setMoves(new Array<>(new Integer[]{1, 2, 3, 4}));
         outroPersonagem.setMoves(new Array<>(new Integer[]{1, 2, 3, 4}));
 
-        // Posiciona os personagens para que estejam dentro do alcance do ataque
-        outroPersonagem.move_dir(400); // Move o outro personagem para a direita
-        personagem.move_esq(450); // Move o personagem para a esquerda
-        personagem.whereGo(); // Atualiza a direção do personagem
+        // Posiciona os personagens para que estejam dentro do alcance do ataque à esquerda
+        outroPersonagem.move_dir(300); // Move o outro personagem para a direita (posição final: 800.0)
+        personagem.move_dir(170); // Move o personagem para a direita (posição final: 270.0)
+        personagem.whereGo(); // Atualiza a direção do personagem para a esquerda
 
         // Realiza o ataque
         personagem.atack(outroPersonagem);

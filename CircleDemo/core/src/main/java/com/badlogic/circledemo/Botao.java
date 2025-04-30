@@ -7,13 +7,25 @@ public class Botao {
     private Texture img;
     private Integer posx, posy;
     private Integer tamx, tamy;
-    public Botao(String path, Integer posx, Integer posy, Integer tamx, Integer tamy){
+
+    // Construtor existente
+    public Botao(String path, Integer posx, Integer posy, Integer tamx, Integer tamy) {
         this.img = new Texture(Gdx.files.internal(path));
         this.posx = posx;
         this.posy = posy;
         this.tamx = tamx;
         this.tamy = tamy;
     }
+
+    // Novo construtor para injeção de dependência
+    public Botao(Texture img, Integer posx, Integer posy, Integer tamx, Integer tamy) {
+        this.img = img;
+        this.posx = posx;
+        this.posy = posy;
+        this.tamx = tamx;
+        this.tamy = tamy;
+    }
+
     public Botao(Integer option, Integer posx, Integer posy){
         if(option == 0){
             this.img = new Texture(Gdx.files.internal("btJogar.jpg"));
@@ -31,11 +43,8 @@ public class Botao {
         }
     }
 
-    public boolean clicou(float x, float y){
-        if(x>=posx && x<=posx+tamx && y>=posy && y<=posy+tamy){
-            return true;
-        }
-        return false;
+    public boolean clicou(float x, float y) {
+        return x >= posx && x <= posx + tamx && y >= posy && y <= posy + tamy;
     }
 
     public Texture getImg() { return this.img; }
@@ -43,7 +52,7 @@ public class Botao {
     public Integer getPosy() { return this.posy; }
     public Integer getTamx() { return this.tamx; }
     public Integer getTamy() { return this.tamy; }
-    public void dispose(){
+    public void dispose() {
         img.dispose();
     }
 }

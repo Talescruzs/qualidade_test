@@ -2,7 +2,6 @@ package com.badlogic.circledemo;
 
 import com.badlogic.gdx.graphics.Texture;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -25,17 +24,6 @@ public class BolinhaTest {
         assertEquals(200, (int) bolinha.getY());
         assertEquals(1, (int) bolinha.getIdLocal());
         assertNotNull(bolinha.getImg());
-    }
-
-    @Ignore("Ignorado devido à dependência de bibliotecas nativas")
-    @Test
-    public void testConstructorWithoutPath() {
-        Bolinha bolinhaSemPath = new Bolinha(150, 250, 2);
-
-        assertEquals(150, (int) bolinhaSemPath.getX());
-        assertEquals(250, (int) bolinhaSemPath.getY());
-        assertEquals(2, (int) bolinhaSemPath.getIdLocal());
-        assertNotNull(bolinhaSemPath.getImg());
     }
 
     @Test

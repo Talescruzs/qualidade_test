@@ -1,10 +1,8 @@
 package com.badlogic.circledemo;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -61,17 +59,6 @@ public class AvatarTest {
 
         assertNotNull(avatarP1.getPersonagem());
         assertEquals(mockAvatarTexture, avatarP1.getImg());
-    }
-
-    @Ignore("Ignorado devido à dependência de bibliotecas nativas")
-    @Test
-    public void testUpdate() {
-        TextureRegion initialFrame = avatarP1.getFrame();
-        avatarP1.update();
-        TextureRegion updatedFrame = avatarP1.getFrame();
-
-        assertNotNull(updatedFrame);
-        assertNotEquals(initialFrame, updatedFrame);
     }
 
     @Test

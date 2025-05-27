@@ -1,0 +1,18 @@
+plugins {
+    id 'java' // Plugin para projetos Java
+}
+
+group = 'meu.grupo' // Grupo do projeto
+version = '1.0' // Versão do projeto
+
+repositories {
+    mavenCentral() // Repositório Maven Central
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2' // Dependência para testes Junit
+}
+
+test {
+    useJUnitPlatform() // Plataforma de teste Junit
+}

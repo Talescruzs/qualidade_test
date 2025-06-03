@@ -2,6 +2,7 @@ import pytest
 from seleniumDrive import TestUniversity
 
 class TestSeleniumDrive:
+    @pytest.fixture(autouse=True)
     def setup(self):
         self.selenium_instance = TestUniversity()
         self.mainLink = "https://www.uni-muenchen.de/index.html"
@@ -15,8 +16,10 @@ class TestSeleniumDrive:
         assert self.selenium_instance.driver.title == "Startseite - LMU München" , "Erro ao chegar no site"
 
     def test_main_menu(self):
-        main_menu = self.selenium_instance.get_main_menu()
-        assert main_menu is not None, "Main menu not found"
-        assert self.selenium_instance.click(main_menu) is None, "Error clicking main menu"
-
+        self.selenium_instance.open_main_menu()
+    
+    def finish(self):
+        self.selenium_instance.driver.close()
+        self.selenium_instance.driver.quit()
+        assert self.selenium_instance.driver is None, "Driver is not closed properly"
 

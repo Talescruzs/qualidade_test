@@ -1,25 +1,26 @@
 import pytest
-from seleniumDrive import TestUniversity
+from seleniumDrive import BasicTests
+from selenium import webdriver
 
-class TestSeleniumDrive:
-    @pytest.fixture(autouse=True)
-    def setup(self):
-        self.selenium_instance = TestUniversity()
-        self.mainLink = "https://www.uni-muenchen.de/index.html"
+@pytest.fixture
+def database_data():
+    driver = webdriver.Firefox()
+    url = "https://www.uni-muenchen.de/index.html"
 
-    def test_driver_initialization(self):
-        assert self.selenium_instance.driver is not None, "Driver is not initialized"
+    yield {"driver": driver, "main_url": url}
+    driver.quit()  
 
-    # Testes com selenium 
-    def test_page_title(self):
-        self.selenium_instance.setup_method()
-        assert self.selenium_instance.driver.title == "Startseite - LMU München" , "Erro ao chegar no site"
+@pytest.mark.home_page
+def test_basic_functionalities(database_data):  
+    driver = BasicTests(database_data["driver"])
 
-    def test_main_menu(self):
-        self.selenium_instance.open_main_menu()
-    
-    def finish(self):
-        self.selenium_instance.driver.close()
-        self.selenium_instance.driver.quit()
-        assert self.selenium_instance.driver is None, "Driver is not closed properly"
+    # Open Page
+    driver.open_page(database_data["main_url"])
+
+    assert driver.get_title() == "Startseite - LMU München"
+
+    driver.open_menu()
+    database_data["driver"].implicitly_wait(10) 
+    driver.change_language('en')
+
 

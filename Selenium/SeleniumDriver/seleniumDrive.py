@@ -50,7 +50,7 @@ class BasicTests(MainSelenium):
                 # /html/body/div[1]/nav/ul/li[1]/ul/li[2]            /a/div
                 # /html/body/div[1]/nav/ul/li[1]/ul/li[2]/ul[2]/li[2]/a/div
 
-
+        
 if __name__ == "__main__":
     driver = webdriver.Firefox()
     test = BasicTests(driver)
@@ -68,3 +68,5 @@ if __name__ == "__main__":
     test.test_list_menu()
     
     driver.quit()
+
+    

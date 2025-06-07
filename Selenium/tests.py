@@ -1,5 +1,5 @@
 import pytest
-from seleniumDrive import BasicTests
+from ..SeleniumDriver.seleniumDrive import BasicTests
 from selenium import webdriver
 
 @pytest.fixture
@@ -20,7 +20,7 @@ def test_basic_functionalities(database_data):
     assert driver.get_title() == "Startseite - LMU München"
 
     driver.open_menu()
-    database_data["driver"].implicitly_wait(10) 
+    driver.implicitly_wait(10) 
     driver.change_language('en')
 
 

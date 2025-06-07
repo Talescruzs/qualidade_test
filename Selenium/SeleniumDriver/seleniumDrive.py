@@ -1,14 +1,14 @@
-"""  
-Login Page Class for https://practicetestautomation.com/practice-test-login/  
-"""  
 from selenium import webdriver
 from selenium.webdriver.common.by import By  
 from selenium.common.exceptions import NoSuchElementException  
+
+from SeleniumDriver.mainSelenium import MainSelenium
   
   
-class BasicTests:  
-    def __init__(self, driver: webdriver.Remote):  
-        self.driver = driver  
+class BasicTests(MainSelenium):  
+    def __init__(self, driver: webdriver.Remote):
+        super(BasicTests, self).__init__(driver)
+        self.driver = driver
   
     def open_page(self, url):  
         self.driver.get(url)  

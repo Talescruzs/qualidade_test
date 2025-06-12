@@ -1,6 +1,11 @@
 import pytest
 from SeleniumDriver.seleniumDrive import BasicTests
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+import time
 
 
 @pytest.fixture(scope="session")
@@ -17,7 +22,6 @@ def basicTests(driver):
     url = "https://www.uni-muenchen.de/index.html"
 
     interface.open_page(url)
-    interface.implicitly_wait(10)
 
     yield {"driver": interface}
 
@@ -40,7 +44,6 @@ def test_change_language(basicTests):
     driver = basicTests["driver"]
 
     driver.open_menu()
-    driver.implicitly_wait(10) 
     driver.change_language('en')
     
     driver.implicitly_wait(10) 
@@ -49,6 +52,13 @@ def test_change_language(basicTests):
 @pytest.mark.home_page
 def test_search_bnt(basicTests):  
     driver = basicTests["driver"]
+
+    # Clique no botão de busca
+    driver.click_search()
+
+    # time.sleep(2)
+
+    assert driver.element_in_screen("/html/body/div[3]/div/div/div/h3")
 
 
 

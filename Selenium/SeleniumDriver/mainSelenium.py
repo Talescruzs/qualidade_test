@@ -9,6 +9,13 @@ class MainSelenium:
     def implicitly_wait(self, time: int):
         self.driver.implicitly_wait(time)
 
+    def click_on(self, xpath: str):  
+        try:
+            element = self.driver.find_element(By.XPATH, xpath)
+            element.click()
+        except NoSuchElementException:
+            print(f"Element with XPath '{xpath}' does not exist.")
+
     def get_title(self) -> str:  
         return self.driver.title
     

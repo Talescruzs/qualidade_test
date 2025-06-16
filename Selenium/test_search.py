@@ -47,3 +47,12 @@ def test_search_bar(searchTests):
     assert driver.get_search_bar_text() == "testandoBlaBlaBla", "Search bar should contain 'test'"
     driver.clean_search_bar()
 
+@pytest.mark.search_element
+def test_search_main_website(searchTests):
+    driver = searchTests["driver"]
+
+    driver.click_on("/html/body/main/div[1]/div/div/div[2]/form/div/div/ul/li[1]/label")
+    driver.write_on_search_bar("teste")
+    driver.click_search_button()
+    teste = driver.get_search_results()
+    assert len(teste) > 0, "Search results should not be empty"

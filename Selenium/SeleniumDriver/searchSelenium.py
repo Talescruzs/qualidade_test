@@ -24,6 +24,19 @@ class SearchSelenium(MainSelenium):
             print("Search bar not found.")
             return ""
 
+    def get_search_results(self) -> list:
+        returns = []
+        results = self.driver.find_elements(By.XPATH, "/html/body/main/div[1]/div/div/div[3]/div/div/div/div/div[5]/div[2]/div/div/div[1]")
+        for result in results:
+            element = dict()
+            element["title"] = result.find_element(By.XPATH, "./div[1]//a").text
+            element["type"] = result.find_element(By.XPATH, "./div[1]/div[3]/div/div[contains(@class, 'gs-fileFormat')]/span[2]").text
+            element["text"] = result.find_element(By.XPATH, "./div[1]/div[3]/div/div[contains(@class, 'gs-bidi-start-align gs-snippet')]").text
+            returns.append(element)
+        print(results) 
+        return returns
+    
+
     def click_search(self):  
         self.driver.find_element(By.XPATH, "/html/body/header/div/div/div/div/nav/ul/li[5]/button").click()
         self.driver.implicitly_wait(10)
@@ -35,6 +48,11 @@ class SearchSelenium(MainSelenium):
         except NoSuchElementException:
             print(f"Option '{option}' not found.")
 
+    def click_search_button(self):
+        search_button = self.driver.find_element(By.XPATH, "/html/body/div[3]/div/div/div/div/form/div[2]/div/button")
+        search_button.click()
+        self.driver.implicitly_wait(10)
+        
     def check_option_is_selected(self, option: str) -> bool:
         try:
             element = self.driver.find_element(By.XPATH, f"//*[@id='gsearch-{option}']")

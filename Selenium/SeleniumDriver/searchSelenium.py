@@ -26,7 +26,7 @@ class SearchSelenium(MainSelenium):
 
     def get_search_results(self) -> list:
         returns = []
-        results = self.driver.find_elements(By.XPATH, "/html/body/main/div[1]/div/div/div[3]/div/div/div/div/div[5]/div[2]/div/div/div[1]")
+        results = self.driver.find_elements(By.XPATH, "/html/body/main/div[1]/div/div/div[3]/div/div/div/div/div[5]/div[2]/div/div/div[1]/div[1]/div/div[1]/div/a")
         for result in results:
             element = dict()
             element["title"] = result.find_element(By.XPATH, "./div[1]//a").text

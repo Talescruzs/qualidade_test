@@ -1,15 +1,15 @@
 import pytest
 import time
 from SeleniumDriver.searchSelenium import SearchSelenium
-
+from selenium import webdriver
 from main_tests import driver 
 
 # # inicial
-# @pytest.fixture(scope="session")
-# def driver():
-#     driver = webdriver.Firefox()
-#     yield driver
-#     driver.quit() 
+@pytest.fixture(scope="session")
+def driver():
+     driver = webdriver.Chrome()
+     yield driver
+     driver.quit() 
 
 @pytest.fixture
 def searchTests(driver):

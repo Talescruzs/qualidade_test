@@ -68,7 +68,7 @@ class BasicTests(MainSelenium):
 
         
 if __name__ == "__main__":
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     test = BasicTests(driver)
     test.open_page("https://www.uni-muenchen.de/index.html")
     test.implicitly_wait(10)

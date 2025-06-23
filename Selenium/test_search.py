@@ -52,7 +52,22 @@ def test_search_main_website(searchTests):
     driver = searchTests["driver"]
 
     driver.click_on("/html/body/main/div[1]/div/div/div[2]/form/div/div/ul/li[1]/label")
-    driver.write_on_search_bar("teste")
+    driver.write_on_search_bar("test")
     driver.click_search_button()
     teste = driver.get_search_results()
     assert len(teste) > 0, "Search results should not be empty"
+    for result in teste:
+        assert ("test" in result["title"].lower() or "test" in result["text"].lower() or "PDF" in result["type"].lower()), result["title"].lower() + " " + result["text"].lower() + " " + result["type"].lower() + " should contain 'teste'"
+
+@pytest.mark.search_element
+def test_search_all_lmu_sites(searchTests):
+    driver = searchTests["driver"]
+
+    driver.click_on("/html/body/main/div[1]/div/div/div[2]/form/div/div/ul/li[1]/label")
+    driver.click_option("2")
+    driver.write_on_search_bar("test")
+    driver.click_search_button()
+    teste = driver.get_search_results()
+    assert len(teste) > 0, "Search results should not be empty"
+    for result in teste:
+        assert ("test" in result["title"].lower() or "test" in result["text"].lower()), result["title"].lower() + " " + result["text"].lower() + " " + result["type"].lower() + " should contain 'teste'"
